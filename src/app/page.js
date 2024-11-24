@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Dumbbell, Flame, Trophy, Users } from 'lucide-react'
+import EmailSignup from '@/components/EmailSignup'
 
 export default function Home() {
   return (
@@ -19,13 +20,31 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-red-900 to-black">
-        <div className="container mx-auto text-center">
-          <h2 className="text-5xl font-bold mb-4">Welcome to the Pain Games</h2>
-          <p className="text-xl mb-8">Elevate your fitness with relentless competition</p>
-          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            Start Competing
-          </button>
+        <div className="container mx-auto md:w-2/3 text-center">
+          <h2 className="text-5xl font-semibold mb-4">Elevate your fitness with relentless competition</h2>
+          <p className="text-xl">
+            Enter the Pain Games - where you'll battle rivals across the globe, challenge your friends, and conquer your own weaknesses. Dominate your fitness journey or be left behind.
+          </p>
+          <EmailSignup headerText={"Join If You Dare"} />
         </div>
+      </section>
+
+      <section>
+        <div className="bg-black md:mx-auto md:w-2/3 rounded">
+          <h2 className="text-5xl font-bold mb-4">Welcome to the Pain Games</h2>
+              <p className="text-white text-lg">
+                Many will not survive the pain games. The competition will be fierce. The bragging rights will be off the
+                charts. The glory will be unparalleled. The rewards that await the few and the strong will be
+                You will not survive the pain games. The competition will be fierce. The winnings will be glorious.
+                The bragging rights will be off the charts. The rewards that await the few and the strong will be
+                glorious. 
+
+                Don't miss your chance to embrace the suffering, push your limits, and compete for ultimate glory.
+                Enter your email below to stay in the loop and prepare for the pain (and the gains).
+
+                The Pain Games are coming - prepare yourself.
+              </p>
+            </div>
       </section>
 
       {/* Features Section */}
