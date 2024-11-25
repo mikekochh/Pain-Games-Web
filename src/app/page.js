@@ -132,6 +132,7 @@ export default function Home() {
               </p>
             </div>
           </div>
+          
 
           {/* Text paragraphs */}
           <h2 className="font-bold text-3xl text-center">Embrace the Pain, Reap the Gains</h2>
