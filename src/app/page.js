@@ -1,116 +1,146 @@
+"use client";
+
 import Image from 'next/image'
-import { Dumbbell, Flame, Trophy, Users } from 'lucide-react'
+import { Dumbbell, Trophy, Users, Globe, Medal } from 'lucide-react'
 import EmailSignup from '@/components/EmailSignup'
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+
+  const [backgroundImage, setBackgroundImage] = useState('');
+
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      setBackgroundImage('/paingamesbannerdesktop.jpeg');
+    } else {
+      setBackgroundImage('/paingamesbannermobile.jpeg');
+    }
+  }, [window]);
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="custom-gradient">
       {/* Header */}
-      <header className="p-4 bg-red-900">
+      <header className="p-4 bg-transparent fixed top-0 left-0 w-full z-10">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">Pain Games</h1>
           <nav>
             <ul className="flex space-x-4">
-              <li><a href="#features" className="hover:text-red-400">Features</a></li>
-              <li><a href="#download" className="hover:text-red-400">Download</a></li>
+              <li>
+                <a href="#features" className="hover:text-red-400">Contact Us</a>
+              </li>
             </ul>
           </nav>
         </div>
       </header>
 
+
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-red-900 to-black">
-        <div className="container mx-auto md:w-2/3 text-center">
-          <h2 className="text-5xl font-semibold mb-4">Elevate your fitness with relentless competition</h2>
-          <p className="text-xl">
-            Enter the Pain Games - where you'll battle rivals across the globe, challenge your friends, and conquer your own weaknesses. Dominate your fitness journey or be left behind.
+      <section
+        className="py-20"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container mx-auto md:w-2/3 text-center mb-40">
+          <h2 className="text-4xl font-semibold mb-4">
+            Elevate your fitness with relentless competition
+          </h2>
+          <p className="text-xl mb-4">
+            The ultimate fitness and weight training app, where you’ll compete with rivals globally, challenge your friends, and conquer your own weaknesses. Dominate your fitness journey or be left behind.
           </p>
-          <EmailSignup headerText={"Join If You Dare"} />
+          <EmailSignup headerText={"Sign up to be notified when Pain Games is launched"} subText={"Est. End of 2024"} />
+        </div>
+      </section>
+
+      {/* How Does It Work Section */}
+      <section id="howdoesitwork" className="py-20">
+        <div className="container mx-auto px-4">
+          <h3 className="text-xl font-light text-red-700 text-center">COMPETITION IS THE GREATEST MOTIVATION</h3>
+          <h3 className="text-4xl font-bold text-center mb-12">How Do the Pain Games Work?</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
+            <FeatureCard 
+              icon={<Dumbbell className="w-12 h-12 text-red-500" />}
+              title="Log Workouts"
+              description="Track your workouts and compete with your past self to achieve new fitness goals."
+            />
+            <FeatureCard 
+              icon={<Users className="w-12 h-12 text-red-500" />}
+              title="Compete with Friends"
+              description="Challenge your friends to fitness competitions and see who comes out on top."
+            />
+            <FeatureCard 
+              icon={<Globe className="w-12 h-12 text-red-500" />}
+              title="Global Competitions"
+              description="Enter the Colosseum to compete globally, climb the leaderboards, and prove your strength."
+            />
+            <FeatureCard 
+              icon={<Medal className="w-12 h-12 text-red-500" />}
+              title="Complete Challenges"
+              description="Take on fitness challenges designed to push your limits. Earn medals and honors to showcase your accomplishments."
+            />
+          </div>
         </div>
       </section>
 
       <section>
-        <div className="bg-black md:mx-auto md:w-2/3 rounded">
-          <h2 className="text-5xl font-bold mb-4">Welcome to the Pain Games</h2>
-              <p className="text-white text-lg">
-                Many will not survive the pain games. The competition will be fierce. The bragging rights will be off the
-                charts. The glory will be unparalleled. The rewards that await the few and the strong will be
-                You will not survive the pain games. The competition will be fierce. The winnings will be glorious.
-                The bragging rights will be off the charts. The rewards that await the few and the strong will be
-                glorious. 
+        <div className="md:mx-auto md:w-2/3 rounded p-6">
+          <h2 className="text-4xl font-bold text-white text-center">⚠️ WARNING ⚠️</h2>
+          <p className="text-center mb-6">THE WEAK WILL BE CRUSHED BY THE PAIN GAMES</p>
 
-                Don't miss your chance to embrace the suffering, push your limits, and compete for ultimate glory.
-                Enter your email below to stay in the loop and prepare for the pain (and the gains).
 
-                The Pain Games are coming - prepare yourself.
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            <div className="text-center">
+              <img 
+                src="/pain1.jpeg" 
+                alt="Competition" 
+                className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
+              />
+              <p className="text-red-100 text-md mt-2 font-semibold">
+                The competition will be fierce
               </p>
             </div>
-      </section>
+            <div className="text-center">
+              <img 
+                src="/pain2.jpeg" 
+                alt="Bragging Rights" 
+                className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
+              />
+              <p className="text-red-100 text-md mt-2 font-semibold">
+                The bragging rights will be off the charts
+              </p>
+            </div>
+            <div className="text-center">
+              <img 
+                src="/pain3.jpeg" 
+                alt="Glory" 
+                className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
+              />
+              <p className="text-red-100 text-md mt-2 font-semibold">
+                The glory will be unparalleled
+              </p>
+            </div>
+            <div className="text-center">
+              <img 
+                src="/pain4.jpeg" 
+                alt="Gains" 
+                className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
+              />
+              <p className="text-red-100 text-md mt-2 font-semibold">
+                The gains will be unbelievable
+              </p>
+            </div>
+          </div>
 
-      {/* Features Section */}
-      <section id="features" className="py-20">
-        <div className="container mx-auto">
-          <h3 className="text-3xl font-bold text-center mb-12">Embrace the Pain, Reap the Gain</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <FeatureCard 
-              icon={<Dumbbell className="w-12 h-12 text-red-500" />}
-              title="Log Workouts"
-              description="Track your progress with detailed workout logs"
-            />
-            <FeatureCard 
-              icon={<Users className="w-12 h-12 text-red-500" />}
-              title="Compete"
-              description="Challenge friends or join global competitions"
-            />
-            <FeatureCard 
-              icon={<Flame className="w-12 h-12 text-red-500" />}
-              title="Burn"
-              description="Set personal records and watch your calories burn"
-            />
-            <FeatureCard 
-              icon={<Trophy className="w-12 h-12 text-red-500" />}
-              title="Win"
-              description="Earn badges and climb the leaderboards"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* App Preview Section */}
-      <section className="py-20 bg-gradient-to-t from-red-900 to-black">
-        <div className="container mx-auto flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <h3 className="text-3xl font-bold mb-4">Experience the Thrill</h3>
-            <p className="mb-4">Push your limits, compete with friends, and transform your body with Pain Games. Our app turns your fitness journey into an exhilarating challenge.</p>
-            <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-              Learn More
-            </button>
-          </div>
-          <div className="md:w-1/2">
-            <Image 
-              src="/placeholder.svg?height=600&width=300" 
-              alt="Pain Games App Preview" 
-              width={300} 
-              height={600} 
-              className="rounded-lg shadow-lg mx-auto"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section id="download" className="py-20 bg-red-900">
-        <div className="container mx-auto text-center">
-          <h3 className="text-3xl font-bold mb-4">Ready to Play?</h3>
-          <p className="mb-8">Download Pain Games now and start your journey to fitness domination</p>
-          <div className="flex justify-center space-x-4">
-            <button className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-              Download for iOS
-            </button>
-            <button className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-              Download for Android
-            </button>
-          </div>
+          {/* Text paragraphs */}
+          <h2 className="font-bold text-3xl text-center">Embrace the Pain, Reap the Gains</h2>
+          <p className="text-white text-lg mb-4">
+            The rewards that await the few and the strong will be glorious. Don't miss your chance to embrace the suffering,
+            push your limits, and compete for the ultimate glory. Enter your email below to be notified when the Pain Games
+            begin.
+          </p>
+          <EmailSignup headerText={"The Pain Games are coming - prepare yourself"} />
         </div>
       </section>
 

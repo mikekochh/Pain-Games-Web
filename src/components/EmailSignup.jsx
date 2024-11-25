@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { useRouter } from "next/navigation";
 
-const EmailSignup = ({ headerText }) => {
+const EmailSignup = ({ headerText, subText }) => {
   const [email, setEmail] = useState("");
   const router = useRouter();
 
@@ -12,7 +12,6 @@ const EmailSignup = ({ headerText }) => {
       alert("Please enter a valid email address.");
       return;
     }
-
     try {
         const response = await axios.post('/api/email/addEmail', {
             email
@@ -31,16 +30,19 @@ const EmailSignup = ({ headerText }) => {
     setEmail(""); // Clear the input
   };
 
+  // Competition is the greatest motivator
+  // How Does the Pain Games Work?
+
+
   return (
-    <div className="text-white flex flex-col items-center justify-center p-6">
-      {/* Header */}
-
-      
-
+    <div className="text-white flex flex-col items-center justify-center mx-2">
       {/* Signup Box */}
       <div className="w-full max-w-md bg-gray-900 p-6 rounded-lg shadow-lg border border-red-600">
-        <p className="text-gray-300 text-center mb-4">
+        <p className="text-gray-300 text-center text-xl">
             {headerText}
+        </p>
+        <p className="text-gray-400 text-center mb-4 text-md">
+          {subText}
         </p>
 
         {/* Email Input */}
