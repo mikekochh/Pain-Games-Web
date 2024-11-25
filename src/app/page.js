@@ -1,5 +1,4 @@
 "use client";
-
 import { Dumbbell, Users, Globe, Medal } from 'lucide-react'
 import EmailSignup from '@/components/EmailSignup'
 import { useEffect, useState } from 'react';
