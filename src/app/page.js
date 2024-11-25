@@ -1,7 +1,6 @@
 "use client";
 
-import Image from 'next/image'
-import { Dumbbell, Trophy, Users, Globe, Medal } from 'lucide-react'
+import { Dumbbell, Users, Globe, Medal } from 'lucide-react'
 import EmailSignup from '@/components/EmailSignup'
 import { useEffect, useState } from 'react';
 
@@ -10,12 +9,24 @@ export default function Home() {
   const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
-    if (window.innerWidth > 768) {
-      setBackgroundImage('/paingamesbannerdesktop.jpeg');
-    } else {
-      setBackgroundImage('/paingamesbannermobile.jpeg');
-    }
-  }, [window]);
+    // Ensure the code runs only on the client side
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setBackgroundImage('/paingamesbannerdesktop.jpeg');
+      } else {
+        setBackgroundImage('/paingamesbannermobile.jpeg');
+      }
+    };
+
+    // Set the initial background image
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="custom-gradient">
@@ -132,7 +143,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          
+
 
           {/* Text paragraphs */}
           <h2 className="font-bold text-3xl text-center">Embrace the Pain, Reap the Gains</h2>

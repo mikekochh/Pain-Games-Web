@@ -8,6 +8,7 @@ const EmailSignup = ({ headerText, subText }) => {
   const router = useRouter();
 
   const handleSignup = async () => {
+    console.log("Hello?");
     if (!email) {
       alert("Please enter a valid email address.");
       return;
@@ -17,9 +18,19 @@ const EmailSignup = ({ headerText, subText }) => {
             email
         });
 
+        console.log('response 1: ', response);
+
         if (response.status === 200) {
-            setEmail("");
-            router.push('/thank-you');
+            const responseSendEmail = await axios.post('/api/email/sendEmail', {
+              email
+            });
+
+            console.log("responseSendEmail: ", responseSendEmail);
+
+            if (responseSendEmail.status === 200) {
+              setEmail("");
+              router.push('/thank-you');
+            }
         } else {
             alert('Something went wrong. Please try again.');
         }
@@ -29,9 +40,6 @@ const EmailSignup = ({ headerText, subText }) => {
     }
     setEmail(""); // Clear the input
   };
-
-  // Competition is the greatest motivator
-  // How Does the Pain Games Work?
 
 
   return (
