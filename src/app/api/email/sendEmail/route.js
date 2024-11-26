@@ -24,28 +24,48 @@ export async function POST(req) {
             to: email,
             subject: "Welcome to Hell",
             html: `
-                <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-                    <h1 style="color: #FF5733; text-align: center;">Welcome to Hell 🔥</h1>
-                    <p>Dear User,</p>
-                    <p>
-                        Thank you for signing up for Pain Games. We’re excited to have you on board!
-                        Prepare yourself for an epic adventure.
+                <div style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #000; color: #FF0000; padding: 20px;">
+                    <h1 style="text-align: center; color: #FF4500; font-size: 36px; text-transform: uppercase; margin-bottom: 10px;">
+                        Welcome to Hell
+                    </h1>
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 30px; color: #FFA500;">
+                        The Pain Games await. Prepare for glory.
                     </p>
-                    <p style="text-align: center; margin: 20px 0;">
-                        <a href="https://thepaingames.com/login" 
-                        style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: #fff; 
-                                text-decoration: none; border-radius: 5px; font-weight: bold;">
-                            Get Started
-                        </a>
-                    </p>
-                    <p>Stay safe, <br>The Pain Games Team</p>
-                    <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
-                    <p style="font-size: 12px; color: #777;">
-                        If you did not sign up for this account, please ignore this email.
-                    </p>
+                    <div style="background-color: #111; padding: 20px; border-radius: 8px;">
+                        <p style="margin-bottom: 20px; font-size: 16px; color: #FFF;">
+                            <strong>Welcome Gladiator,</strong>
+                        </p>
+                        <p style="margin-bottom: 20px; font-size: 16px; color: #FFF;">
+                            You’ve stepped into the colosseum. This isn’t just another app. This is 
+                            <span style="color: #FF4500; font-weight: bold;">The Pain Games</span> - the ultimate test of grit, power, and your will to dominate. 
+                            Here, you’ll compete with warriors around the globe, challenge your friends, and crush your own limits.
+                        </p>
+                        <p style="margin-bottom: 20px; font-size: 16px; color: #FFF;">
+                            There’s no backing down now. Once the Pain Games are launched, you’ll be the first to know. 
+                            Until then, prepare your mind, your body, and your soul. 
+                            The competition will be fierce. The suffering will be real. The glory will be eternal.
+                        </p>
+                        <p style="margin-bottom: 20px; font-size: 16px; color: #FFF;">
+                            Here’s the truth: the weak will not survive. But for those who embrace the pain? 
+                            The gains are waiting.
+                        </p>
+                        <p style="margin-bottom: 30px; font-size: 16px; color: #FFF;">
+                            Stay ready. The Pain Games are coming.
+                        </p>
+                        <p style="margin-bottom: 20px; font-size: 16px; color: #FFF;">
+                            And you’ve just earned your place in the colosseum.
+                        </p>
+                        <p style="font-size: 16px; color: #FFF; text-align: right;">
+                            Stay strong, <br>
+                            <span style="color: #FF4500; font-weight: bold;">The Pain Games Team</span>
+                        </p>
+                    </div>
+                    <footer style="margin-top: 30px; text-align: center; font-size: 14px; color: #777; font-style: italic;">
+                        “Embrace the pain, reap the gains”
+                    </footer>
                 </div>
             `,
-        };
+        };        
 
 
         await mg.messages.create(DOMAIN, emailData);
