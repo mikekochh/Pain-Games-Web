@@ -2,11 +2,55 @@
 import { Dumbbell, Users, Globe, Medal } from 'lucide-react'
 import EmailSignup from '@/components/EmailSignup'
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Home() {
 
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [bottomBannerImage, setBottomBannerImage] = useState(null);
+  const [viewStartTime, setViewStartTime] = useState(new Date());
+
+  // we only have to track the view when they first come to the page, theres no other pages to worry about
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        handleEndView(); // End the current view when the page is hidden
+      } else if (document.visibilityState === 'visible') {
+        // Reset the viewStartTime when the user returns to the page
+        const newStartTime = new Date();
+        setViewStartTime(newStartTime);
+      }
+    };    
+  
+    const handleBeforeUnload = () => {
+      handleEndView(); // Trigger view end when the user navigates away
+    };
+  
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+  
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+  
+
+  // Function to calculate and send the session length
+  const handleEndView = async () => {
+    const endTime = Date.now();
+    const startTime = viewStartTime.getTime(); // Access the most recent start time
+    const sessionLength = Math.floor((endTime - startTime) / 1000);
+
+    try {
+      await axios.post('/api/views/addView', {
+        sessionLength,
+      });
+    } catch (error) {
+      console.log("There was an error tracking view:", error);
+    }
+  };
 
   useEffect(() => {
     // Ensure the code runs only on the client side
