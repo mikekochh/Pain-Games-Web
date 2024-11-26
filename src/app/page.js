@@ -5,15 +5,18 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
 
-  const [backgroundImage, setBackgroundImage] = useState('');
+  const [backgroundImage, setBackgroundImage] = useState(null);
+  const [bottomBannerImage, setBottomBannerImage] = useState(null);
 
   useEffect(() => {
     // Ensure the code runs only on the client side
     const handleResize = () => {
       if (window.innerWidth > 768) {
         setBackgroundImage('/paingamesbannerdesktop.jpeg');
+        setBottomBannerImage('/paingamesbottombannerdesktop.jpeg');
       } else {
         setBackgroundImage('/paingamesbannermobile.jpeg');
+        setBottomBannerImage('/paingamesbottombannermobile.jpeg');
       }
     };
 
@@ -65,7 +68,7 @@ export default function Home() {
       </section>
 
       {/* How Does It Work Section */}
-      <section id="howdoesitwork" className="py-20">
+      <section id="howdoesitwork" className="pt-20 mb-16">
         <div className="container mx-auto px-4">
           <h3 className="text-xl font-light text-red-700 text-center">COMPETITION IS THE GREATEST MOTIVATION</h3>
           <h3 className="text-4xl font-bold text-center mb-12">How Do the Pain Games Work?</h3>
@@ -98,9 +101,7 @@ export default function Home() {
         <div className="md:mx-auto md:w-2/3 rounded p-6">
           <h2 className="text-4xl font-bold text-white text-center">⚠️ WARNING ⚠️</h2>
           <p className="text-center mb-6">THE WEAK WILL BE CRUSHED BY THE PAIN GAMES</p>
-
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             <div className="text-center">
               <img 
                 src="/pain1.jpeg" 
@@ -142,21 +143,31 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-
-          {/* Text paragraphs */}
-          <h2 className="font-bold text-3xl text-center">Embrace the Pain, Reap the Gains</h2>
-          <p className="text-white text-lg mb-4">
+      {/* Final section */}
+      <section>
+        <div className="md:w-1/2 md:mx-auto relative">
+          <h3 className="text-xl font-light text-red-700 text-center">STRENGTH IS THE HIGHEST VIRTUE</h3>
+          <h2 className="font-bold text-4xl text-center mb-6">Embrace the Pain, Reap the Gains</h2>
+          <p className="text-white text-lg mb-4 text-center">
             The rewards that await the few and the strong will be glorious. Don't miss your chance to embrace the suffering,
             push your limits, and compete for the ultimate glory. Enter your email below to be notified when the Pain Games
             begin.
           </p>
-          <EmailSignup headerText={"The Pain Games are coming - prepare yourself"} />
+          <div className="relative md:mb-2">
+            <img src={bottomBannerImage} className="md:rounded-xl md:border md:border-1 md:border-black" />
+            <div className="absolute top-2 left-0 w-full h-full flex items-start justify-center">
+              <EmailSignup headerText={"The Pain Games are coming - prepare yourself"} />
+            </div>
+          </div>
         </div>
       </section>
 
+
       {/* Footer */}
-      <footer className="py-8 bg-black">
+      <footer className="py-8 bg-black border-1 border-t border-red-700">
         <div className="container mx-auto text-center text-gray-400">
           <p>&copy; 2024 Pain Games. All rights reserved.</p>
         </div>

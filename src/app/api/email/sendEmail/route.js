@@ -23,8 +23,30 @@ export async function POST(req) {
             from: "Pain Games <no-reply@thepaingames.com>",
             to: email,
             subject: "Welcome to Hell",
-            text: "This is a test email sent from Mailgun and your Next.js app!",
+            html: `
+                <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <h1 style="color: #FF5733; text-align: center;">Welcome to Hell 🔥</h1>
+                    <p>Dear User,</p>
+                    <p>
+                        Thank you for signing up for Pain Games. We’re excited to have you on board!
+                        Prepare yourself for an epic adventure.
+                    </p>
+                    <p style="text-align: center; margin: 20px 0;">
+                        <a href="https://thepaingames.com/login" 
+                        style="display: inline-block; padding: 10px 20px; background-color: #FF5733; color: #fff; 
+                                text-decoration: none; border-radius: 5px; font-weight: bold;">
+                            Get Started
+                        </a>
+                    </p>
+                    <p>Stay safe, <br>The Pain Games Team</p>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+                    <p style="font-size: 12px; color: #777;">
+                        If you did not sign up for this account, please ignore this email.
+                    </p>
+                </div>
+            `,
         };
+
 
         await mg.messages.create(DOMAIN, emailData);
 
