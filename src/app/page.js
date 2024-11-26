@@ -2,6 +2,7 @@
 import { Dumbbell, Users, Globe, Medal } from 'lucide-react'
 import EmailSignup from '@/components/EmailSignup'
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
 
@@ -12,11 +13,11 @@ export default function Home() {
     // Ensure the code runs only on the client side
     const handleResize = () => {
       if (window.innerWidth > 768) {
-        setBackgroundImage('/paingamesbannerdesktop.jpeg');
-        setBottomBannerImage('/paingamesbottombannerdesktop.jpeg');
+        setBackgroundImage('/paingamesbannerdesktop.webp');
+        setBottomBannerImage('/paingamesbottombannerdesktop.webp');
       } else {
-        setBackgroundImage('/paingamesbannermobile.jpeg');
-        setBottomBannerImage('/paingamesbottombannermobile.jpeg');
+        setBackgroundImage('/paingamesbannermobile.webp');
+        setBottomBannerImage('/paingamesbottombannermobile.webp');
       }
     };
 
@@ -103,8 +104,10 @@ export default function Home() {
           <p className="text-center mb-6">THE WEAK WILL BE CRUSHED BY THE PAIN GAMES</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             <div className="text-center">
-              <img 
-                src="/pain1.jpeg" 
+              <Image 
+                width={200}
+                height={200}
+                src="/pain1.webp" 
                 alt="Competition" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
               />
@@ -113,8 +116,10 @@ export default function Home() {
               </p>
             </div>
             <div className="text-center">
-              <img 
-                src="/pain2.jpeg" 
+              <Image 
+                width={200}
+                height={200}
+                src="/pain2.webp" 
                 alt="Bragging Rights" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
               />
@@ -123,8 +128,10 @@ export default function Home() {
               </p>
             </div>
             <div className="text-center">
-              <img 
-                src="/pain3.jpeg" 
+              <Image
+                width={200}
+                height={200} 
+                src="/pain3.webp" 
                 alt="Glory" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
               />
@@ -133,8 +140,10 @@ export default function Home() {
               </p>
             </div>
             <div className="text-center">
-              <img 
-                src="/pain4.jpeg" 
+              <Image
+                width={200}
+                height={200} 
+                src="/pain4.webp" 
                 alt="Gains" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
               />
@@ -157,7 +166,10 @@ export default function Home() {
             begin.
           </p>
           <div className="relative md:mb-2">
-            <img src={bottomBannerImage} className="md:rounded-xl md:border md:border-1 md:border-black" />
+            <img
+              src={bottomBannerImage} 
+              className="md:rounded-xl md:border md:border-1 md:border-black" 
+            />
             <div className="absolute top-2 left-0 w-full h-full flex items-start justify-center">
               <EmailSignup headerText={"The Pain Games are coming - prepare yourself"} />
             </div>
