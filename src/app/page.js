@@ -102,7 +102,7 @@ export default function Home() {
           <h2 className="text-4xl font-semibold mb-4">
             Elevate your fitness with relentless competition
           </h2>
-          <p className="text-xl mb-4">
+          <p className="text-xl mb-4 mx-2">
             The ultimate fitness and weight training app, where you’ll compete with rivals globally, challenge your friends, and conquer your own weaknesses. Dominate your fitness journey or be left behind.
           </p>
           <EmailSignup headerText={"Sign up to be notified when Pain Games is launched"} subText={"Est. End of 2024"} />
@@ -193,7 +193,7 @@ export default function Home() {
         <div className="md:w-1/2 md:mx-auto relative">
           <h3 className="text-xl font-light text-red-700 text-center">STRENGTH IS THE HIGHEST VIRTUE</h3>
           <h2 className="font-bold text-4xl text-center mb-6">Embrace the Pain, Reap the Gains</h2>
-          <p className="text-white text-lg mb-4 text-center">
+          <p className="text-white text-lg mb-4 text-center mx-2">
             The rewards that await the few and the strong will be glorious. Don't miss your chance to embrace the suffering,
             push your limits, and compete for the ultimate glory. Enter your email below to be notified when the Pain Games
             begin.
