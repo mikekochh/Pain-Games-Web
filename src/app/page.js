@@ -99,7 +99,7 @@ export default function Home() {
         }}
       >
         <div className="container mx-auto md:w-2/3 text-center mb-40">
-          <h2 className="text-4xl font-semibold mb-4">
+          <h2 className="text-4xl font-semibold mb-4 mx-2">
             Elevate your fitness with relentless competition
           </h2>
           <p className="text-xl mb-4 mx-2">
@@ -191,8 +191,8 @@ export default function Home() {
       {/* Final section */}
       <section>
         <div className="md:w-1/2 md:mx-auto relative">
-          <h3 className="text-xl font-light text-red-700 text-center">STRENGTH IS THE HIGHEST VIRTUE</h3>
-          <h2 className="font-bold text-4xl text-center mb-6">Embrace the Pain, Reap the Gains</h2>
+          <h3 className="text-xl font-light text-red-700 text-center mx-2">STRENGTH IS THE HIGHEST VIRTUE</h3>
+          <h2 className="font-bold text-4xl text-center mb-6 mx-2">Embrace the Pain, Reap the Gains</h2>
           <p className="text-white text-lg mb-4 text-center mx-2">
             The rewards that await the few and the strong will be glorious. Don't miss your chance to embrace the suffering,
             push your limits, and compete for the ultimate glory. Enter your email below to be notified when the Pain Games
