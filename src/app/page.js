@@ -2,7 +2,6 @@
 import { Dumbbell, Users, Globe, Medal } from 'lucide-react'
 import EmailSignup from '@/components/EmailSignup'
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 
 export default function Home() {
 
@@ -104,9 +103,7 @@ export default function Home() {
           <p className="text-center mb-6">THE WEAK WILL BE CRUSHED BY THE PAIN GAMES</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             <div className="text-center">
-              <Image 
-                width={200}
-                height={200}
+              <img
                 src="/pain1.webp" 
                 alt="Competition" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
@@ -116,9 +113,7 @@ export default function Home() {
               </p>
             </div>
             <div className="text-center">
-              <Image 
-                width={200}
-                height={200}
+              <img
                 src="/pain2.webp" 
                 alt="Bragging Rights" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
@@ -128,9 +123,7 @@ export default function Home() {
               </p>
             </div>
             <div className="text-center">
-              <Image
-                width={200}
-                height={200} 
+              <img 
                 src="/pain3.webp" 
                 alt="Glory" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
@@ -140,9 +133,7 @@ export default function Home() {
               </p>
             </div>
             <div className="text-center">
-              <Image
-                width={200}
-                height={200} 
+              <img
                 src="/pain4.webp" 
                 alt="Gains" 
                 className="w-full h-auto mx-auto rounded border-4 border-red-800 object-cover aspect-square"
