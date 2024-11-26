@@ -36,13 +36,6 @@ export default function Home() {
       <header className="p-4 bg-transparent fixed top-0 left-0 w-full z-10">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">Pain Games</h1>
-          <nav>
-            <ul className="flex space-x-4">
-              <li>
-                <a href="#features" className="hover:text-red-400">Contact Us</a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </header>
 
