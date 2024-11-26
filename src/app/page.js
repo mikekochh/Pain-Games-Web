@@ -14,41 +14,46 @@ export default function Home() {
 
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') {
+      if (document.visibilityState === "hidden") {
         handleEndView(); // End the current view when the page is hidden
-      } else if (document.visibilityState === 'visible') {
+      } else if (document.visibilityState === "visible") {
         // Reset the viewStartTime when the user returns to the page
-        const newStartTime = new Date();
-        setViewStartTime(newStartTime);
+        setViewStartTime(new Date());
       }
-    };    
-  
+    };
+
     const handleBeforeUnload = () => {
-      handleEndView(); // Trigger view end when the user navigates away
+      // Use navigator.sendBeacon to reliably send data on unload
+      const endTime = Date.now();
+      const startTime = viewStartTime.getTime();
+      const sessionLength = Math.floor((endTime - startTime) / 1000);
+
+      const data = JSON.stringify({ sessionLength });
+
+      navigator.sendBeacon("/api/views/addView", data);
     };
-  
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('beforeunload', handleBeforeUnload);
-  
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, []);
-  
+  }, [viewStartTime]);
 
   // Function to calculate and send the session length
   const handleEndView = async () => {
     const endTime = Date.now();
-    const startTime = viewStartTime.getTime(); // Access the most recent start time
+    const startTime = viewStartTime.getTime();
     const sessionLength = Math.floor((endTime - startTime) / 1000);
 
     try {
-      await axios.post('/api/views/addView', {
+      await axios.post("/api/views/addView", {
         sessionLength,
       });
     } catch (error) {
-      console.log("There was an error tracking view:", error);
+      console.error("There was an error tracking view:", error);
     }
   };
 
