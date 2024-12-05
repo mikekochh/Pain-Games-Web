@@ -9,7 +9,7 @@ export async function POST(req) {
         // Insert a new workout into the "workouts" table
         const { data, error } = await supabase
             .from("emails") // Specify the table name
-            .insert([{ lowerCaseEmail }]) // Insert the userID
+            .insert([{ email: lowerCaseEmail }]) // Insert the userID
 
         // Handle potential errors
         if (error) {

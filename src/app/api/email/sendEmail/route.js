@@ -20,9 +20,11 @@ export async function POST(req) {
 
         const lowerCaseEmail = email.toLowerCase();
 
+        console.log("lowercaseEmail: ", lowerCaseEmail);
+
         // Send email using Mailgun
         const emailData = {
-            from: "Pain Games",
+            from: "Pain Games <no-reply@thepaingames.com>",
             to: lowerCaseEmail,
             subject: "Welcome to Hell",
             html: `
