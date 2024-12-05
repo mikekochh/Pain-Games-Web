@@ -22,7 +22,7 @@ export async function POST(req) {
 
         // Send email using Mailgun
         const emailData = {
-            from: "Pain Games <no-reply@thepaingames.com>",
+            from: "Pain Games",
             to: lowerCaseEmail,
             subject: "Welcome to Hell",
             html: `
@@ -70,7 +70,9 @@ export async function POST(req) {
         };        
 
 
-        await mg.messages.create(DOMAIN, emailData);
+        const emailResponse = await mg.messages.create(DOMAIN, emailData);
+
+        console.log("response: ", emailResponse);
 
         // Update the Supabase table
         const { data, error } = await supabase
