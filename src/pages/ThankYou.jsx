@@ -24,8 +24,7 @@ const ThankYou = () => {
 
         {/* Closing */}
         <p className="text-gray-500">
-          Stay vigilant. Watch your email for updates. The Pain Games are
-          coming, and the weak will fail.
+          Stay vigilant. Check your email (including spam) and drag it to your main inbox. The Pain Games are coming, and the weak will fail.
         </p>
       </div>
     </section>
