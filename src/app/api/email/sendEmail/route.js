@@ -18,10 +18,12 @@ export async function POST(req) {
             return NextResponse.json({ error: "Email address is required" }, { status: 400 });
         }
 
+        const lowerCaseEmail = email.toLowerCase();
+
         // Send email using Mailgun
         const emailData = {
             from: "Pain Games <no-reply@thepaingames.com>",
-            to: email,
+            to: lowerCaseEmail,
             subject: "Welcome to Hell",
             html: `
                 <div style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #000; color: #FF0000; padding: 20px;">
@@ -74,7 +76,7 @@ export async function POST(req) {
         const { data, error } = await supabase
             .from("emails")
             .update({ email_sent: true })
-            .eq("email", email);
+            .eq("email", lowerCaseEmail);
 
         if (error) {
             console.error("Error updating Supabase:", error);

@@ -4,11 +4,12 @@ import { supabase } from "@/utils/supabaseServer";
 export async function POST(req) {
     try {
         const { email } = await req.json();
+        const lowerCaseEmail = email.toLowerCase();
 
         // Insert a new workout into the "workouts" table
         const { data, error } = await supabase
             .from("emails") // Specify the table name
-            .insert([{ email }]) // Insert the userID
+            .insert([{ lowerCaseEmail }]) // Insert the userID
 
         // Handle potential errors
         if (error) {
