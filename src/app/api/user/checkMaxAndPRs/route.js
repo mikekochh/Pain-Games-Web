@@ -57,6 +57,52 @@ export async function POST(req) {
             }
         }
 
+        // Step 3: Find the highest weight for each set and check for new PRs
+        const highestWeightsByExercise = workoutSets.reduce((acc, set) => {
+            const { exerciseID, weight } = set;
+            const weightValue = parseInt(weight);
+
+            if (!acc[exerciseID] || weightValue > acc[exerciseID]) {
+                acc[exerciseID] = weightValue;
+            }
+
+            return acc;
+        }, {});
+
+        console.log("Highest weights by exercise: ", highestWeightsByExercise);
+
+        for (const [exerciseID, highestWeight] of Object.entries(highestWeightsByExercise)) {
+            // Fetch the user's max weight for the exercise
+            const { data: maxData, error: fetchError } = await supabase
+                .from("user_prs")
+                .select("weight")
+                .eq("user_id", userID)
+                .eq("exercise_id", exerciseID)
+                .maybeSingle();
+
+            if (fetchError) {
+                console.error(`Error fetching PR max weight for exercise ${exerciseID}:`, fetchError);
+                continue;
+            }
+
+            // If no previous max or new highest weight exceeds the max, update the database
+            if (!maxData || highestWeight > maxData.weight_max) {
+                const { error: updateError } = await supabase
+                    .from("user_prs")
+                    .upsert({
+                        user_id: userID,
+                        exercise_id: parseInt(exerciseID),
+                        weight: highestWeight,
+                    });
+
+                if (updateError) {
+                    console.error(`Error updating PR max weight for exercise ${exerciseID}:`, updateError);
+                } else {
+                    updates.push({ exerciseID, weight: highestWeight });
+                }
+            }
+        }
+
         console.log("Updates made: ", updates);
 
         return NextResponse.json({ success: true, updates }, { status: 200 });

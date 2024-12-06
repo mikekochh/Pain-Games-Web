@@ -15,7 +15,7 @@ export async function GET(req) {
             .select('weight_max')
             .eq('exercise_id', exerciseID)
             .eq('user_id', userID)
-            .single();
+            .maybeSingle();
 
         if (error) {
             console.log("There was an error fetching the users exercise max: ", error);
