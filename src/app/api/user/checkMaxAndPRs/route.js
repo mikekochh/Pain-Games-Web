@@ -34,7 +34,7 @@ export async function POST(req) {
                 .eq('exercise_id', exerciseID)
                 .order('created_at', { ascending: false }) // Sort by most recent
                 .limit(1)
-                .single(); // Ensure a single object is returned
+                .maybeSingle(); // Ensure a single object is returned
         
 
             if (fetchError) {
@@ -83,7 +83,7 @@ export async function POST(req) {
                 .eq("exercise_id", exerciseID)
                 .order("created_at", { ascending: false }) // Sort by most recent
                 .limit(1) // Fetch only the latest record
-                .single(); // Ensure a single object is returned
+                .maybeSingle(); // Ensure a single object is returned
 
             if (fetchError) {
                 console.error(`Error fetching PR max weight for exercise ${exerciseID}:`, fetchError);
