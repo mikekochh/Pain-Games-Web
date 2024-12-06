@@ -15,7 +15,10 @@ export async function GET(req) {
             .select('weight_max')
             .eq('exercise_id', exerciseID)
             .eq('user_id', userID)
-            .maybeSingle();
+            .order('created_at', { ascending: false }) // Assumes there's a `created_at` column
+            .limit(1)
+            .single(); // `.single()` ensures a single object is returned instead of an array
+    
 
         if (error) {
             console.log("There was an error fetching the users exercise max: ", error);

@@ -28,11 +28,14 @@ export async function POST(req) {
         for (const [exerciseID, totalWeightMoved] of Object.entries(totalWeightsByExercise)) {
             // Fetch the user's max weight for the exercise
             const { data: maxData, error: fetchError } = await supabase
-                .from("exercise_maxes")
-                .select("weight_max")
-                .eq("user_id", userID)
-                .eq("exercise_id", exerciseID)
-                .maybeSingle();
+                .from('exercise_maxes')
+                .select('weight_max')
+                .eq('user_id', userID)
+                .eq('exercise_id', exerciseID)
+                .order('created_at', { ascending: false }) // Sort by most recent
+                .limit(1)
+                .single(); // Ensure a single object is returned
+        
 
             if (fetchError) {
                 console.error(`Error fetching max weight for exercise ${exerciseID}:`, fetchError);
@@ -78,15 +81,19 @@ export async function POST(req) {
                 .select("weight")
                 .eq("user_id", userID)
                 .eq("exercise_id", exerciseID)
-                .maybeSingle();
+                .order("created_at", { ascending: false }) // Sort by most recent
+                .limit(1) // Fetch only the latest record
+                .single(); // Ensure a single object is returned
 
             if (fetchError) {
                 console.error(`Error fetching PR max weight for exercise ${exerciseID}:`, fetchError);
                 continue;
             }
 
+            console.log("maxData: ", maxData);
+
             // If no previous max or new highest weight exceeds the max, update the database
-            if (!maxData || highestWeight > maxData.weight_max) {
+            if (!maxData || highestWeight > maxData.weight) {
                 const { error: updateError } = await supabase
                     .from("user_prs")
                     .upsert({
